@@ -1,24 +1,17 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        def isAlphaNumeric(char):
-            char = char.lower()
-            return ('a' <= char <= 'z') or ('0' <= char <= '9')
+        new_str = ""
+        for char in s: 
+            if char.isalnum():
+                new_str += char.lower()
 
-        l, r = 0, len(s) - 1
+        left = 0 
+        right = len(new_str) - 1
 
-        while l < r:
-            while l < r and not isAlphaNumeric(s[l]):
-                l += 1
-                continue
-
-            while l < r and not isAlphaNumeric(s[r]):
-                r -= 1
-                continue
-
-            if s[l].lower() != s[r].lower():
+        while left < right: 
+            if new_str[left] == new_str[right]:
+                left += 1
+                right -= 1
+            else:
                 return False
-
-            l += 1
-            r -= 1
-
         return True
