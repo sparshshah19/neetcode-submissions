@@ -1,28 +1,21 @@
+from collections import defaultdict 
+
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        #return the k most frequent elemenets within the array
+        #sorting algorithm (O(n log n)) 
+        count_elements = {}
+        ls = []
+        for num in nums: 
+            count_elements[num] = 1 + count_elements.get(num, 0)
         
-        # Initialize a dictionary to count occurences
-        count = defaultdict(int)
+        #1:1 
+        #2:2
+        #3:3
 
-        # Count each numbers freqeuncy
-        for n in nums:
-            count[n] += 1
+        count_elements_sort = dict(sorted(count_elements.items(), key=lambda item:item[1],reverse= True))
         
-        # Initialize a list where each index represents a frequency
-        # With each index holding the numbers that appear with that frequency
-        freq = [[] for i in range(len(nums) + 1)]
+        for key in list(count_elements_sort.keys())[:k]: 
+            ls.append(key)
+        return ls
 
-        # Place each number in the correct index according to its frequency
-        for n, c in count.items():
-            freq[c].append(n)
-        
-        # Initialize the result list
-        res = []
-
-        # Gather the top k frequency elements
-        # Iterate over frequencies from highest to lowest
-        for i in range(len(freq) - 1, 0, -1):
-            for n in freq[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
