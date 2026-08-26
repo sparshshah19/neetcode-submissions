@@ -1,14 +1,14 @@
-from collections import defaultdict
-
 class Solution:
     def hasDuplicate(self, nums: List[int]) -> bool:
-        hash_map = defaultdict(int)
+        nums.sort()
 
-        for num in nums:
-            if num not in hash_map:
-                hash_map[num] += 1
-            elif hash_map[num] >= 1:
-                return True
+        left = 0 
+        right = 1 
 
+        while right < len(nums):
+            if nums[left] == nums[right]: 
+                return True 
+            else: 
+                left += 1
+                right += 1
         return False
-         
