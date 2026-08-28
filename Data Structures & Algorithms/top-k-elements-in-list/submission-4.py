@@ -1,21 +1,30 @@
-from collections import defaultdict
+from collections import defaultdict 
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        # Creating frequency map
-        freq_map = defaultdict(int)
-        for num in nums:
-            freq_map[num] += 1
+        #return the k most frequent elemenets within the array
+        #sorting algorithm (O(n log n)) 
         
-        # Creating the buckets for the bucket sort
-        buckets = [[] for _ in range(len(nums) + 1)]
-        for num, freq in freq_map.items():
-            buckets[freq].append(num)
+        #map each element, and how much is its frequency 
 
-        # Forming the result for the bucket sort
-        res = []
-        for freq in range(len(buckets) - 1, 0, -1):
-            for num in buckets[freq]:
-                res.append(num)
-                if len(res) == k:
-                    return res
+        freq_map = {}
+        for num in nums: 
+            freq_map[num] = 1 + freq_map.get(num, 0)
+        
+        #1:1
+        #2:2
+        #3:3
+
+        combos_arr = list(freq_map.items())
+        
+        combos_arr.sort(reverse=True, key = lambda x:x[1])
+        
+        arr = []
+        counter = 0
+        while counter < k: 
+          
+          arr.append(combos_arr[0][0])
+          combos_arr.pop(0)
+          counter += 1
+    
+        return arr
