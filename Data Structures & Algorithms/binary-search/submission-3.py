@@ -1,19 +1,16 @@
 class Solution:
-    def binary_search(self, l, r, nums, target):
-        if l > r:
-            return -1
-
-        m = l + ((r - l) // 2)
-
-        if nums[m] == target:
-            return m
-
-        if nums[m] < target:
-            return self.binary_search(m + 1, r, nums, target)
-
-        else:
-            return self.binary_search(l, m - 1, nums, target)
-
     def search(self, nums: List[int], target: int) -> int:
-        return self.binary_search(0, len(nums) - 1, nums, target)
-        
+        #so how binary search works is you want to compute the middle, 
+        left = 0 
+        right = len(nums) - 1 
+
+        while left <= right: 
+            middle = (left + right) // 2 
+            if nums[middle] < target: 
+                left = middle + 1
+            elif nums[middle] > target: 
+                right = middle - 1
+            else: 
+                return middle
+        return -1
+            
