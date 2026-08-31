@@ -1,14 +1,87 @@
 class Solution:
     def maxArea(self, heights: List[int]) -> int:
-        l, r = 0, len(heights) - 1
-        max_container = 0
+        #brute force 
+       # max_area = 0
+       # curr_area = 0 
 
-        while l < r:
-            container = min(heights[l], heights[r]) * (r - l)
-            max_container = max(max_container, container)
-            if heights[l] <= heights[r]:
-                l += 1
-            else:
-                r -= 1
+        #for i in range(len(heights)):
+         #   for j in range(i + 1, len(heights)):
+         #       curr_area = min(heights[i], heights[j]) * (j - i)
+         #       max_area = max(curr_area, max_area)
 
-        return max_container
+        #return max_area
+
+        max_area = 0 
+        curr_area = 0 
+
+        #two pointers algo 
+        
+        left = 0 
+        right = len(heights) - 1
+
+        while left < right: 
+            curr_area = min(heights[left], heights[right]) * (right - left)
+            if heights[left] >= heights[right]:
+                right -= 1
+            elif heights[left] < heights[right]:
+                left += 1 
+            max_area = max(curr_area, max_area)
+        return max_area
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
