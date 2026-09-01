@@ -1,4 +1,4 @@
-# NeetCode Solutions — @EJ-Lan
+# NeetCode Solutions — @Sparsh
 
 > Synced automatically from [NeetCode.io](https://neetcode.io) · Repository: `neetcode-submissions-ktxmn8ni`
 
