@@ -1,22 +1,15 @@
-from collections import defaultdict
-
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
+      count_s = {}
+      count_t = {}
 
-        hash_map = defaultdict(int)
-
-        for char in s:
-            hash_map[char] += 1
-
-        for char in t:
-            hash_map[char] -= 1
-
-        for value in hash_map.values():
-            if value < 0:
-                return False
-
+      if len(s) != len(t): 
+        return False
+      for i in range(len(s)):
+        count_s[s[i]] = 1 + count_s.get(s[i], 0)
+        count_t[t[i]] = 1 + count_t.get(t[i], 0)
+      if count_s == count_t:
         return True
-
-
+      else: 
+        return False
+        
